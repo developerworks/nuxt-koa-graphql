@@ -1,7 +1,7 @@
 node_modules
-data/*
 yarn.lock
 .nuxt
 .idea
 build
 *.sqlite
+!*.gitkeep/
