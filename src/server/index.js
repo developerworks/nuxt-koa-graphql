@@ -3,15 +3,17 @@ import bodyParser from 'koa-bodyparser';
 import cors from 'kcors';
 import { Nuxt, Builder } from 'nuxt';
 import api from './api';
+import { connect } from './db';
 
 const app = new Koa();
 
 const host = process.env.host || '127.0.0.1';
 const port = process.env.port || 3000;
 
-
 app.use(cors());
 app.use(bodyParser());
+
+connect();
 
 app.use(api.routes());
 app.use(api.allowedMethods());
