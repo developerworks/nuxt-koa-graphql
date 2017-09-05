@@ -3,14 +3,14 @@
 
         <Navbar />
 
-        <div class="inner-wrapper d-flex flex-column">
-            <section class="container flex-grow">
+        <div class="content-wrapper d-flex flex-column">
+            <b-container class="flex-grow">
                 <b-row align-h="center">
                     <b-col cols="4" style="margin-top: 100px;">
                         <nuxt />
                     </b-col>
                 </b-row>
-            </section>
+            </b-container>
 
             <footer class="bg-dark text-white mt-4">
                 <div class="container-fluid py-3">
@@ -44,13 +44,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .wrapper {
-        padding: 0;
-        height: 100%;
-    }
-    .inner-wrapper {
-        height: calc(100vh - 57px);
-    }
-</style>

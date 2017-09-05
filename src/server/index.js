@@ -1,10 +1,9 @@
-require('dotenv').config();
 import app from './app';
 import { Nuxt, Builder } from 'nuxt';
 import Router from 'koa-router';
 import { connect } from './db';
 import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
-import schema from './schema';
+import schema from './schemas';
 
 
 /*========================================================================================*
