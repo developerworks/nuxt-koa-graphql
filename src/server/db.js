@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import config from '../../database.config.js';
+import colors from 'colors';
 
 const dev = !(process.env.NODE_ENV === 'production');
 
@@ -9,10 +10,10 @@ export const connect = () => {
     db
     .authenticate()
     .then(() => {
-        console.log('Connection has been established successfully.');
+        console.log(colors.green('Connection has been established successfully.'));
     })
     .catch(err => {
-        console.error('Unable to connect to the database:', err);
+        console.error(colors.red('Unable to connect to the database:', err));
         process.exit(1);
     });
 };

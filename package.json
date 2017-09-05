@@ -5,20 +5,31 @@
   "main": "src/server/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "backpack dev"
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^4.0.1",
+    "@nuxtjs/bootstrap-vue": "^2.0.2",
+    "@nuxtjs/font-awesome": "^1.0.2",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-logger-winston": "^0.0.2",
     "koa-router": "^7.2.1",
+    "koa-session": "^5.5.0",
     "nuxt": "^1.0.0-rc8",
-    "sequelize": "^4.8.0"
+    "sequelize": "^4.8.0",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "backpack-core": "^0.4.2",
+    "cross-env": "^5.0.5",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
-    "sqlite3": "^3.1.9"
+    "sqlite3": "^3.1.9",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
   }
 }
