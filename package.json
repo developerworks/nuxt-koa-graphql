@@ -10,9 +10,11 @@
     "start": "cross-env NODE_ENV=production node build/main.js"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^4.0.1",
+    "@nuxtjs/apollo": "^2.0.0",
     "@nuxtjs/bootstrap-vue": "^2.0.2",
     "@nuxtjs/font-awesome": "^1.0.2",
+    "apollo-server-koa": "^1.1.2",
+    "graphql": "0.10.5",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
@@ -27,6 +29,9 @@
   "devDependencies": {
     "backpack-core": "^0.4.2",
     "cross-env": "^5.0.5",
+    "dotenv": "^4.0.0",
+    "graphql-tools": "^1.2.2",
+    "lodash": "^4.17.4",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "sqlite3": "^3.1.9",

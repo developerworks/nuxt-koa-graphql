@@ -5,7 +5,6 @@ import winston from 'winston';
 import koaLogger from 'koa-logger-winston';
 import session from 'koa-session';
 
-
 /*========================================================================================*
  * Create App
  *========================================================================================*/

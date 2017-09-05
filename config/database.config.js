@@ -3,7 +3,7 @@ const { resolve } = require('path');
 export default {
     development: {
         dialect: 'sqlite',
-        storage: resolve(__dirname, 'data/db.sqlite'),
+        storage: resolve(__dirname, '../data/db.sqlite'),
     },
     production: {
         // host: 'localhost',
@@ -13,6 +13,6 @@ export default {
         // password: 'root',
         // dialect: 'postgres'
         dialect: 'sqlite',
-        storage: resolve(__dirname, 'data/db.sqlite'),
+        storage: resolve(__dirname, '../data/db.sqlite'),
     }
 }
