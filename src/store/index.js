@@ -7,7 +7,9 @@ const actions = {
 
         // Send user info to state.user
         if (req.session && req.session.user)
-            commit('account/setUser', req.session.user)
+            commit('account/setUser', req.session.user);
+        else
+            commit('account/setUser', null);
     },
 };
 

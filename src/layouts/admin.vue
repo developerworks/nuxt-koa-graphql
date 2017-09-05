@@ -36,6 +36,7 @@
     import Sidebar_System from '~/components/admin/Sidebar_System';
 
     export default {
+        middleware: 'needLogin',
         components: {
             Navbar,
             Sidebar_Users,

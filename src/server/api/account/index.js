@@ -16,8 +16,6 @@ router.post('/login', context => {
         email: 'admin@admin.com',
     };
 
-    console.log('login...');
-
     const body = context.request.body;
 
     // Kiểm tra thông tin user
@@ -35,9 +33,9 @@ router.post('/login', context => {
 });
 
 
-router.post('/logout', context => {
-    delete context.session.user;
-    context.body = { ok: true };
+router.post('/logout', (ctx ) => {
+    delete ctx.session.user;
+    ctx.body = { ok: true };
 });
 
 

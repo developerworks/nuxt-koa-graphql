@@ -22,6 +22,9 @@ module.exports = {
         "@nuxtjs/axios",
         "@nuxtjs/font-awesome"
     ],
+    plugins: [
+        //{ src: '~/plugins/vue-notification.js', ssr: false }
+    ],
     build: {
         vendor: ['axios'],
         // extend(config, ctx) {

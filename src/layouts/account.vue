@@ -7,7 +7,7 @@
             <section class="container flex-grow">
                 <b-row align-h="center">
                     <b-col cols="4" style="margin-top: 100px;">
-                        <nuxt></nuxt>
+                        <nuxt />
                     </b-col>
                 </b-row>
             </section>
@@ -30,7 +30,6 @@
             </footer>
 
         </div>
-
     </div>
 </template>
 
