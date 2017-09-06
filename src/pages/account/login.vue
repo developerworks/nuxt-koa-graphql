@@ -6,9 +6,9 @@
                 description="Email tài khoản thường có dạng abc@gmail.com">
             <b-form-input
                     id="email"
-                    type="email"
+                    type="text"
                     required
-                    v-model="user.email"
+                    v-model="user.usernameOrEmail"
                     placeholder="Nhập địa chỉ email..."
             />
         </b-form-group>
@@ -35,13 +35,19 @@
 </template>
 
 <script>
+    import gql from 'graphql-tag';
+    import loginMutation from '~/apollo/queries/login.gql';
+
     export default {
         layout: 'account',
         middleware: 'needNotLogin',
+        apollo: {
+
+        },
         data() {
             return {
                 user: {
-                    email: null,
+                    usernameOrEmail: null,
                     password: null,
                     remember: true,
                 }
@@ -49,7 +55,20 @@
         },
         methods: {
             login() {
-                this.$store.dispatch('account/login', this.user);
+                const vm = this;
+
+                this.$apollo.mutate({
+                    mutation: loginMutation,
+                    variables: {
+                        usernameOrEmail: this.user.usernameOrEmail,
+                        password: this.user.password,
+                    },
+                    update(ctx, {data}) {
+                        vm.$store.dispatch('account/login', data.login);
+                    }
+                });
+
+                //this.$store.dispatch('account/login', this.user);
             }
         }
     }

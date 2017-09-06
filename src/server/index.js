@@ -1,8 +1,13 @@
-import app from './app';
-import { Nuxt, Builder } from 'nuxt';
+import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
+import cors from 'kcors';
+import winston from 'winston';
+import koaLogger from 'koa-logger-winston';
+import session from 'koa-session';
 import Router from 'koa-router';
-import { connect } from './db';
+import { Nuxt, Builder } from 'nuxt';
 import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
+import { connect } from './db';
 import schema from './schemas';
 
 
@@ -11,6 +16,42 @@ import schema from './schemas';
  *========================================================================================*/
 const host = process.env.host || '127.0.0.1';
 const port = process.env.port || 3000;
+
+
+/*========================================================================================*
+ * Create App
+ *========================================================================================*/
+const app = new Koa();
+
+
+
+/*========================================================================================*
+ * Setup Logger
+ *========================================================================================*/
+app.use(koaLogger(new (winston.Logger)({
+    transports: [
+        new (winston.transports.Console)(),
+        //new (winston.transports.File)({ filename: 'app.log' })
+    ]
+})));
+
+
+/*========================================================================================*
+ * Setup middlewares
+ *========================================================================================*/
+app.use(bodyParser());
+app.use(cors());
+
+
+/*========================================================================================*
+ * Setup session
+ *========================================================================================*/
+app.keys = ['!lyN@mIsAwes0m3#'];
+app.use(session({
+    key: 'koa:session',
+    maxAge: 86400000,
+    overwrite: true,
+}, app));
 
 
 
@@ -22,11 +63,17 @@ connect();
 
 
 /*========================================================================================*
- * Setup API
+ * Setup GRAPHQL
  *========================================================================================*/
 const router = new Router();
-router.post('/graphql', graphqlKoa({ schema }));
-router.get('/graphql', graphqlKoa({ schema }));
+router.all('/graphql', graphqlKoa(ctx => {
+    return {
+        schema,
+        pretty: true,
+        context: ctx,
+    }
+}));
+//router.get('/graphql', graphqlKoa({ schema }));
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 app.use(router.routes());

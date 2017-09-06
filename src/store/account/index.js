@@ -8,28 +8,15 @@ const mutations = {
 
 const actions = {
 
-    async login({ commit }, { email, password }) {
-        const router = this.app.router;
-        try {
-            const res = await this.$axios.$post('/login', { email, password });
-            commit('setUser', res);
-            router.replace({ name: 'index' });
-        }
-        catch (err) {
-
-            throw err;
-        }
+    async login({ commit }, user) {
+        console.log(user);
+        commit('setUser', user);
+        this.app.router.replace({ name: 'index' });
     },
 
     async logout({ commit }) {
-
-        const router = this.app.router;
-
-        await this.$axios.$post('/logout');
-
         commit('setUser', null);
-
-        router.replace({ name: 'index' });
+        this.app.router.replace({ name: 'index' });
     }
 };
 

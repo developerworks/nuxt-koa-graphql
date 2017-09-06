@@ -1,7 +1,7 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import * as Post from './post';
 import * as Author from './author';
-import * as User from './user';
+import User from './users';
 
 const types = [];
 const mutations = [];

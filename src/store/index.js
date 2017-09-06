@@ -3,7 +3,11 @@ import account from './account';
 
 
 const actions = {
-    nuxtServerInit ({ commit }, { req }) {
+    nuxtServerInit ({ commit }, context) {
+
+        console.log("nuxtServerInit:", context);
+
+        const { req } = context;
 
         // Send user info to state.user
         if (req.session && req.session.user)
