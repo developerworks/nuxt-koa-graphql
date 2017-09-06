@@ -6,11 +6,11 @@ module.exports = {
         // Important: return the modified config
         config.entry.main = "./src/server/index.js";
 
-        config.resolve.alias = {
-            'config': resolve(__dirname, 'config'),
-        };
-
-        console.log(config);
+        // config.resolve.alias = {
+        //     'config': resolve(__dirname, 'config'),
+        // };
+        //
+        // console.log(config);
 
 
         return config;

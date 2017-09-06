@@ -37,7 +37,7 @@ app.use(router.allowedMethods());
 /*========================================================================================*
  * Setup Nuxt
  *========================================================================================*/
-const config = require('config/nuxt.config.js');
+const config = require('../../config/nuxt.config.js');
 config.dev = !(process.env.NODE_ENV === 'production');
 config.srcDir = 'src/';
 

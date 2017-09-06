@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import config from 'config/database.config.js';
+import config from '../../config/database.config.js';
 import colors from 'colors';
 
 const dev = !(process.env.NODE_ENV === 'production');
