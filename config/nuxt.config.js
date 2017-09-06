@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+
 module.exports = {
     srcDir: "src/",
     loading: {
@@ -19,16 +21,23 @@ module.exports = {
     ],
     modules: [
         "@nuxtjs/bootstrap-vue",
-        "@nuxtjs/axios",
+        "@nuxtjs/apollo",
         "@nuxtjs/font-awesome"
     ],
+    apollo: {
+        networkInterfaces: {
+            default: '~/apollo/network-interfaces/default.js'
+        }
+    },
     plugins: [
         //{ src: '~/plugins/vue-notification.js', ssr: false }
     ],
     build: {
-        vendor: ['axios'],
-        // extend(config, ctx) {
-        //
-        // }
+        //vendor: ['axios'],
+        extend(config, ctx) {
+            config.resolve.alias = Object.assign({}, config.resolve.alias, {
+                'config': resolve(__dirname),
+            });
+        }
     }
 };

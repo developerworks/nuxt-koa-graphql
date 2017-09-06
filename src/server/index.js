@@ -1,7 +1,10 @@
+require('dotenv').config();
 import app from './app';
 import { Nuxt, Builder } from 'nuxt';
-import api from './api';
+import Router from 'koa-router';
 import { connect } from './db';
+import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
+import schema from './schema';
 
 
 /*========================================================================================*
@@ -22,15 +25,20 @@ connect();
 /*========================================================================================*
  * Setup API
  *========================================================================================*/
-app.use(api.routes());
-app.use(api.allowedMethods());
+const router = new Router();
+router.post('/graphql', graphqlKoa({ schema }));
+router.get('/graphql', graphqlKoa({ schema }));
+router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 
 
 /*========================================================================================*
  * Setup Nuxt
  *========================================================================================*/
-const config = require('../../nuxt.config.js');
+const config = require('config/nuxt.config.js');
 config.dev = !(process.env.NODE_ENV === 'production');
 config.srcDir = 'src/';
 
